@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title><?= $title ?></title>
     <link rel="shortcut icon" type="image/png" href="<?= base_url() ?>/assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="<?= base_url('admin') ?>/assets/css/styles.min.css" />
 </head>
@@ -32,7 +32,7 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link active" href="#" aria-expanded="false">
+                            <a class="sidebar-link <?= $title == 'Dashboard' ? 'active' : '' ?>" href="<?= base_url('dashboard') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
@@ -41,14 +41,14 @@
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">UI COMPONENTS</span>
+                            <span class="hide-menu">Etalase</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                            <a class="sidebar-link <?= $title == 'Produk' ? 'active' : '' ?>" href="<?= base_url('dashboard/produk') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>
-                                <span class="hide-menu">Buttons</span>
+                                <span class="hide-menu">Produk</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -164,7 +164,7 @@
                                             <i class="ti ti-list-check fs-6"></i>
                                             <p class="mb-0 fs-3">My Task</p>
                                         </a>
-                                        <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                        <a href="<?= base_url('logout') ?>" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>
                             </li>
@@ -176,13 +176,13 @@
             <?= $this->renderSection('content'); ?>
         </div>
     </div>
-    <script src="<?= base_url('admin') ?>/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="<?= base_url('admin') ?>/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url('admin') ?>/assets/js/sidebarmenu.js"></script>
-    <script src="<?= base_url('admin') ?>/assets/js/app.min.js"></script>
-    <script src="<?= base_url('admin') ?>/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="<?= base_url('admin') ?>/assets/libs/simplebar/dist/simplebar.js"></script>
-    <script src="<?= base_url('admin') ?>/assets/js/dashboard.js"></script>
+    <script src="<?= base_url() ?>/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="<?= base_url() ?>/admin/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>/admin/assets/js/sidebarmenu.js"></script>
+    <script src="<?= base_url() ?>/admin/assets/js/app.min.js"></script>
+    <script src="<?= base_url() ?>/admin/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="<?= base_url() ?>/admin/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="<?= base_url() ?>/admin/assets/js/dashboard.js"></script>
 </body>
 
 </html>

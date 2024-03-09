@@ -5,13 +5,13 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class DashboardController extends BaseController
+class ProdukController extends BaseController
 {
     public function index()
     {
         $data = [
-            'title' => 'Dashboard',
+            'title' => 'Produk',
         ];
-        return view('admin/dashboard/dashboard', $data);
+        return view('admin/produk/produk', $data);
     }
 }
