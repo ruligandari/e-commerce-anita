@@ -7,6 +7,7 @@
     <title><?= $title ?></title>
     <link rel="shortcut icon" type="image/png" href="<?= base_url() ?>/assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="<?= base_url('admin') ?>/assets/css/styles.min.css" />
+    <?= $this->renderSection('header'); ?>
 </head>
 
 <body>
@@ -46,81 +47,49 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link <?= $title == 'Produk' ? 'active' : '' ?>" href="<?= base_url('dashboard/produk') ?>" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-article"></i>
+                                    <i class="ti ti-shirt"></i>
                                 </span>
                                 <span class="hide-menu">Produk</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= base_url('dashboard/kategori') ?>" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-alert-circle"></i>
+                                    <i class="ti ti-hanger-2"></i>
                                 </span>
-                                <span class="hide-menu">Alerts</span>
+                                <span class="hide-menu">Kategori</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-cards"></i>
+                                    <i class="ti ti-truck-delivery"></i>
                                 </span>
-                                <span class="hide-menu">Card</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-file-description"></i>
-                                </span>
-                                <span class="hide-menu">Forms</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-typography"></i>
-                                </span>
-                                <span class="hide-menu">Typography</span>
+                                <span class="hide-menu">Pesanan</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">AUTH</span>
+                            <span class="hide-menu">Pelanggan</span>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-login"></i>
+                                    <i class="ti ti-users"></i>
                                 </span>
-                                <span class="hide-menu">Login</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user-plus"></i>
-                                </span>
-                                <span class="hide-menu">Register</span>
+                                <span class="hide-menu">User</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">EXTRA</span>
+                            <span class="hide-menu">Pelaporan</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-mood-happy"></i>
+                                    <i class="ti ti-report"></i>
                                 </span>
-                                <span class="hide-menu">Icons</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-aperture"></i>
-                                </span>
-                                <span class="hide-menu">Sample Page</span>
+                                <span class="hide-menu">Laporan</span>
                             </a>
                         </li>
                     </ul>
@@ -183,6 +152,8 @@
     <script src="<?= base_url() ?>/admin/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="<?= base_url() ?>/admin/assets/libs/simplebar/dist/simplebar.js"></script>
     <script src="<?= base_url() ?>/admin/assets/js/dashboard.js"></script>
+
+    <?= $this->renderSection('script'); ?>
 </body>
 
 </html>
