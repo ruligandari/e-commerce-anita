@@ -10,11 +10,13 @@ class ShopController extends BaseController
     private $kategoriModel;
     private $produkModel;
     private $sizeModel;
+    private $cart;
     public function __construct()
     {
         $this->kategoriModel = new \App\Models\KategoriModel();
         $this->produkModel = new \App\Models\ProdukModel();
         $this->sizeModel = new \App\Models\ProdukSizeModel();
+        $this->cart = new \App\Models\CartModel();
     }
 
     public function index()
@@ -42,5 +44,20 @@ class ShopController extends BaseController
         ];
 
         return view('user/shop/detail', $data);
+    }
+
+    public function process()
+    {
+        $id_produk = $this->request->getPost('id_produk');
+        $id_size = $this->request->getPost('id_size');
+        $qty = $this->request->getPost('qty');
+
+        $data = [
+            'id_produk' => $id_produk,
+            'id_size' => $id_size,
+            'qty' => $qty
+        ];
+
+        $this->cart->insert($data);
     }
 }

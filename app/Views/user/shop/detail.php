@@ -44,7 +44,8 @@
                     </p>
 
                     <!--  -->
-                    <form action="<?= base_url('shop/proccess') ?>" method="post">
+                    <form action="<?= base_url('shop/process') ?>" method="post">
+                        <input type="hidden" name="id_produk" value="<?= $produk['id_produk'] ?>">
                         <div class="p-t-33">
                             <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-203 flex-c-m respon6">
@@ -53,7 +54,7 @@
 
                                 <div class="size-204 respon6-next">
                                     <div class="rs1-select2 bor8 bg0">
-                                        <select class="js-select2" name="size">
+                                        <select class="js-select2" name="id_size">
                                             <option>Choose an option</option>
                                             <?php foreach ($size as $sizeChart) : ?>
                                                 <option value="<?= $sizeChart['id_produk_size'] ?>"><?= $sizeChart['size'] ?></option>
@@ -71,7 +72,7 @@
                                             <i class="fs-16 zmdi zmdi-minus"></i>
                                         </div>
 
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1">
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1">
 
                                         <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-plus"></i>
