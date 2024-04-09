@@ -28,3 +28,4 @@ $routes->group('dashboard', ['filter' => 'authAdmin'], function ($routes) {
 
 $routes->get('/', 'user\HomeController::index');
 $routes->get('shop', 'user\ShopController::index');
+$routes->get('shop/(:num)', 'user\ShopController::detail/$1');

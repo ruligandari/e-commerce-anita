@@ -26,4 +26,16 @@ class ShopController extends BaseController
 
         return view('user/shop/shop', $data);
     }
+
+    public function detail($id)
+    {
+        $produk = $this->produkModel->find($id);
+        $data = [
+            'title' => 'Detail Produk',
+            'kategori' => $this->kategoriModel->findAll(),
+            'produk' => $produk
+        ];
+
+        return view('user/shop/detail', $data);
+    }
 }
