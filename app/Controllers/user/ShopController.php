@@ -9,10 +9,12 @@ class ShopController extends BaseController
 {
     private $kategoriModel;
     private $produkModel;
+    private $sizeModel;
     public function __construct()
     {
         $this->kategoriModel = new \App\Models\KategoriModel();
         $this->produkModel = new \App\Models\ProdukModel();
+        $this->sizeModel = new \App\Models\ProdukSizeModel();
     }
 
     public function index()
@@ -30,10 +32,13 @@ class ShopController extends BaseController
     public function detail($id)
     {
         $produk = $this->produkModel->find($id);
+
+        $size =  $this->sizeModel->where('id_produk', $id)->findAll();
         $data = [
             'title' => 'Detail Produk',
             'kategori' => $this->kategoriModel->findAll(),
-            'produk' => $produk
+            'produk' => $produk,
+            'size' => $size
         ];
 
         return view('user/shop/detail', $data);
