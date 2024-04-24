@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="<?= base_url('user') ?>/images/icons/favicon.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('user') ?>/vendor1/bootstrap/css/bootstrap.min.css">
+
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('user') ?>/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -34,7 +35,11 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('user') ?>/css/util.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('user') ?>/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('user') ?>/css/style.css">
     <!--===============================================================================================-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <?= $this->renderSection('header'); ?>
 </head>
 
 <body class="animsition">
@@ -75,20 +80,20 @@
 
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
-                        <?php if (session()->get('isLoggin')) : ?>
+                        <?php if (session()->get('isloginCustomer')) : ?>
                             <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                                 <i class="zmdi zmdi-search"></i>
                             </div> -->
 
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                            <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
                                 <i class="zmdi zmdi-shopping-cart"></i>
-                            </div>
+                            </div> -->
 
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart d-flex item-center">
-                                <i class="zmdi zmdi-account"></i><span class="stext-102 px-2">Ruli Gandari</span>
+                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  d-flex item-center">
+                                <i class="zmdi zmdi-account"></i><span class="stext-102 px-2"><?= session()->get('name') ?></span>
                             </div>
                         <?php else : ?>
-                            <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ml-2" tabindex="-1">
+                            <a href="<?= base_url('customer/login') ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ml-2" tabindex="-1">
                                 Login
                             </a>
                         <?php endif ?>
@@ -370,6 +375,13 @@
 
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/vendor1/jquery/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $('input[type="file"]').change(function(e) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        });
+    </script>
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/vendor1/animsition/js/animsition.min.js"></script>
     <!--===============================================================================================-->
@@ -388,6 +400,7 @@
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/vendor1/daterangepicker/moment.min.js"></script>
     <script src="<?= base_url('user') ?>/vendor1/daterangepicker/daterangepicker.js"></script>
+    <script src="<?= base_url('user') ?>/js/jquery.countdown.min.js"></script>
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/vendor1/slick/slick.min.js"></script>
     <script src="<?= base_url('user') ?>/js/slick-custom.js"></script>
@@ -414,6 +427,7 @@
     <script src="<?= base_url('user') ?>/vendor1/isotope/isotope.pkgd.min.js"></script>
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/vendor1/sweetalert/sweetalert.min.js"></script>
+    <?= $this->renderSection('script'); ?>
     <script>
         $('.js-addwish-b2').on('click', function(e) {
             e.preventDefault();

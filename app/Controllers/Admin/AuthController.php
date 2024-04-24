@@ -8,10 +8,12 @@ use CodeIgniter\HTTP\ResponseInterface;
 class AuthController extends BaseController
 {
     public $admin;
+    protected $customer;
 
     public function __construct()
     {
         $this->admin = model('AdminModel');
+        $this->customer = model('CustomerModel');
     }
     public function index()
     {
@@ -39,12 +41,15 @@ class AuthController extends BaseController
         // kembalikan menjadi object
         $admin = $this->admin->where('username', $username)->asObject()->first();
 
+        $admin = $this->admin->where('username', $username)->first();
+
         if ($admin) {
             if (password_verify($password, $admin->password)) {
                 session()->set([
                     'id' => $admin->id,
                     'name' => $admin->name,
                     'username' => $admin->username,
+                    'isloginAdmin' => 'true',
                 ]);
                 return redirect()->to('/dashboard');
             } else {
@@ -61,5 +66,40 @@ class AuthController extends BaseController
     {
         session()->destroy();
         return redirect()->to('/login');
+    }
+
+    public function customer_login()
+    {
+        $data = [
+            'title' => 'Login Customer',
+        ];
+        return view('admin/auth/customer_login', $data);
+    }
+
+    public function customer_auth()
+    {
+        $email = $this->request->getPost('email');
+        $password = $this->request->getVar('password');
+
+        $customer = $this->customer->where('email', $email)->asObject()->first();
+
+        if ($customer) {
+            if ($password == $customer->password) {
+                session()->set([
+                    'id' => $customer->id,
+                    'name' => $customer->name,
+                    'email' => $customer->email,
+                    'alamat' => $customer->address,
+                    'isloginCustomer' => 'true',
+                ]);
+                return redirect()->to('/shop');
+            } else {
+                session()->setFlashdata('error', 'Password salah');
+                return redirect()->to('/customer/login');
+            }
+        } else {
+            session()->setFlashdata('error', 'Email tidak ditemukan');
+            return redirect()->to('/customer/login');
+        }
     }
 }

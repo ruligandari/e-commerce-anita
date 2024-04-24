@@ -26,7 +26,7 @@
             text: '<?= session()->getFlashdata('success') ?>',
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '<?= base_url('shop/keranjang') ?>';
+                window.location.href = '<?= base_url('shop/confirm') ?>';
             }
         });
     </script>
@@ -72,7 +72,8 @@
                     </p>
 
                     <!--  -->
-                    <form action="<?= base_url('shop/process') ?>" method="post">
+                    <form action="<?= base_url('shop/update') ?>" method="post">
+                        <input type="hidden" name="id_keranjang" value="<?= $id_keranjang ?>">
                         <input type="hidden" name="id_produk" value="<?= $produk['id_produk'] ?>">
                         <div class="p-t-33">
                             <div class="flex-w flex-r-m p-b-10">
@@ -108,7 +109,7 @@
                                     </div>
 
                                     <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit">
-                                        Pesan Sekarang
+                                        Update Keranjang
                                     </button>
                                 </div>
                             </div>
