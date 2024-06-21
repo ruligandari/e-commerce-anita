@@ -41,8 +41,6 @@ class AuthController extends BaseController
         // kembalikan menjadi object
         $admin = $this->admin->where('username', $username)->asObject()->first();
 
-        $admin = $this->admin->where('username', $username)->first();
-
         if ($admin) {
             if (password_verify($password, $admin->password)) {
                 session()->set([

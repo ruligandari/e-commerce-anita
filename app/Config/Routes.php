@@ -27,6 +27,9 @@ $routes->group('dashboard', ['filter' => 'authAdmin'], function ($routes) {
     $routes->post('kategori/add', 'Admin\KategoriController::add');
     $routes->post('kategori/delete', 'Admin\KategoriController::delete');
     $routes->post('kategori/update', 'Admin\KategoriController::update');
+    // pesanan
+    $routes->get('pesanan', 'Admin\PesananController::index');
+    $routes->get('pesanan/detail/(:any)', 'Admin\PesananController::detail/$1');
 });
 
 
