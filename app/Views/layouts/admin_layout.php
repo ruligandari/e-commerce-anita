@@ -82,6 +82,18 @@
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Review</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link <?= $title == 'Review' ? 'active' : '' ?>" href="<?= base_url('dashboard/review') ?>" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-users"></i>
+                                </span>
+                                <span class="hide-menu">Review Pelanggan</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">Pelaporan</span>
                         </li>
                         <li class="sidebar-item">

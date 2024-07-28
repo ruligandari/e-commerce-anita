@@ -22,6 +22,13 @@ $routes->group('dashboard', ['filter' => 'authAdmin'], function ($routes) {
     $routes->get('produk/edit/(:num)', 'Admin\ProdukController::edit_produk/$1');
     $routes->post('produk/edit', 'Admin\ProdukController::edit');
     $routes->post('produk/delete', 'Admin\ProdukController::delete');
+    // review
+    $routes->get('review', 'Admin\ReviewController::index');
+    $routes->get('produk/add', 'Admin\ProdukController::add_produk');
+    $routes->post('produk/add', 'Admin\ProdukController::add');
+    $routes->get('review/(:any)', 'Admin\ReviewController::detail/$1');
+    $routes->post('produk/edit', 'Admin\ProdukController::edit');
+    $routes->post('produk/delete', 'Admin\ProdukController::delete');
     // kategori
     $routes->get('kategori', 'Admin\KategoriController::index');
     $routes->post('kategori/add', 'Admin\KategoriController::add');
