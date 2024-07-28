@@ -11,7 +11,7 @@ class ReviewSeeder extends Seeder
         $products = ["Kaos Polos", "Kemeja", "Jaket", "Sweater", "Celana Jeans"];
         $customers = ["Andi", "Budi", "Citra", "Dewi", "Eka", "Fajar", "Gita", "Hadi", "Ika", "Joko", "Kiki", "Lia", "Mira", "Nina", "Oki", "Putu", "Qori", "Rina", "Siti", "Tomi"];
 
-        for ($i = 0; $i < 300; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $data = [
                 'id_produk' => $products[array_rand($products)],
                 'harga_produk' => rand(50, 150) * 1000, // Harga dalam ribuan rupiah
