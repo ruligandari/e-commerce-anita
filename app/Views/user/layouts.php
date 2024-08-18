@@ -85,9 +85,9 @@
                                 <i class="zmdi zmdi-search"></i>
                             </div> -->
 
-                            <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
+                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart icon-header-noti" data-notify="2">
                                 <i class="zmdi zmdi-shopping-cart"></i>
-                            </div> -->
+                            </div>
 
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  d-flex item-center">
                                 <i class="zmdi zmdi-account"></i><span class="stext-102 px-2"><?= session()->get('name') ?></span>
@@ -222,7 +222,7 @@
         <div class="header-cart flex-col-l p-l-65 p-r-25">
             <div class="header-cart-title flex-w flex-sb-m p-b-8">
                 <span class="mtext-103 cl2">
-                    Your Cart
+                    Pesanan
                 </span>
 
                 <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -232,70 +232,10 @@
 
             <div class="header-cart-content flex-w js-pscroll">
                 <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="<?= base_url('user') ?>/images/item-cart-01.jpg" alt="IMG">
-                        </div>
+                    <div id="pesanan">
 
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                White Shirt Pleat
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $19.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="<?= base_url('user') ?>/images/item-cart-02.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Converse All Star
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $39.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="<?= base_url('user') ?>/images/item-cart-03.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Nixon Porter Leather
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $17.00
-                            </span>
-                        </div>
-                    </li>
+                    </div>
                 </ul>
-
-                <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Total: $75.00
-                    </div>
-
-                    <div class="header-cart-buttons flex-w w-full">
-                        <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            View Cart
-                        </a>
-
-                        <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            Check Out
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -375,6 +315,61 @@
 
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/vendor1/jquery/jquery-3.2.1.min.js"></script>
+
+    <!--===============================================================================================-->
+
+    <!-- script get pesanan dengan id customer -->
+    <script>
+        function get_pesanan(id) {
+            $.ajax({
+                url: "<?= base_url('shop/get_pesanan') ?>",
+                type: "POST",
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    console.log(response);
+                    // count pesanan
+                    var count = response.total;
+                    $('.js-show-cart').attr('data-notify', count);
+
+                    // tampilkan pesanan di modal cart
+                    var pesanan = response.transaksi;
+                    // cari dalam pesanan no_transaksi yang sama
+
+                    var html = '';
+                    pesanan.forEach(item => {
+                        html += `
+                        <li class="header-cart-item flex-w flex-t m-b-12">
+                        <div class="header-cart-item-img">
+                            <img src="<?= base_url('uploads/produk') ?>/${item.gambar}" alt="IMG">
+                        </div>
+
+                        <div class="header-cart-item-txt">
+                            <a href="<?= base_url('shop/detail/') ?>${item.no_transaksi}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            ${item.name}
+                            </a>
+
+                            <span class="header-cart-item-info badge bg-success text-white">
+                    ${item.status}
+                            </span>
+                            <span class="header-cart-item-info">
+                             ${item.qty} x Rp. ${item.harga}
+                            </span>
+                        </div>
+                    </li>`;
+                    });
+                    $('#pesanan').html(html);
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        // jalankan function get_pesanan
+        get_pesanan(<?= session()->get('id') ?>);
+    </script>
 
     <script>
         $('input[type="file"]').change(function(e) {
@@ -482,6 +477,9 @@
     </script>
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/js/main.js"></script>
+
+    <!-- render script -->
+    <?= $this->renderSection('script'); ?>
 
 </body>
 

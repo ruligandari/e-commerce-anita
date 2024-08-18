@@ -46,4 +46,38 @@ class PesananController extends BaseController
         ];
         return view('admin/pesanan/detail', $data);
     }
+
+    public function validasi($id)
+    {
+        $transaksi = $this->transaksi->where('no_transaksi', $id)->first();
+
+        $data = [
+            'status' => 'Pesanan Diproses',
+        ];
+
+        $this->transaksi->update($transaksi['id_transaksi'], $data);
+
+        session()->setFlashdata('success', 'Pesanan berhasil divalidasi');
+        return redirect()->to(base_url('dashboard/pesanan/detail/' . $id));
+    }
+
+    public function kirim_pesanan()
+    {
+        $id = $this->request->getPost('id_transaksi');
+        $resi = $this->request->getPost('resi');
+
+        $transaksi = $this->transaksi->where('id_transaksi', $id)->first();
+
+
+
+        $data = [
+            'status' => 'Pesanan Dikirim',
+            'no_resi' => $resi,
+        ];
+
+        $this->transaksi->update($id, $data);
+
+        session()->setFlashdata('success', 'Pesanan berhasil dikirim');
+        return redirect()->to(base_url('dashboard/pesanan/detail/' . $transaksi['no_transaksi']));
+    }
 }

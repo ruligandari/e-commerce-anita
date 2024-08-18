@@ -30,6 +30,14 @@
             }
         });
     </script>
+<?php elseif (session()->getFlashdata('review')) : ?>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '<?= session()->getFlashdata('review') ?>',
+        });
+    </script>
 <?php endif ?>
 <!-- Product Detail -->
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
@@ -133,7 +141,7 @@
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (<?= count($review) ?>)</a>
                     </li>
                 </ul>
 
@@ -214,77 +222,76 @@
                                 <div class="p-b-30 m-lr-15-sm">
                                     <!-- Review -->
                                     <div class="flex-w flex-t p-b-68">
-                                        <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                            <img src="images/avatar-01.jpg" alt="AVATAR">
-                                        </div>
+                                        <?php foreach ($review as $re) : ?>
+                                            <!-- <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                                <img src="images/avatar-01.jpg" alt="AVATAR">
+                                            </div> -->
 
-                                        <div class="size-207">
-                                            <div class="flex-w flex-sb-m p-b-17">
-                                                <span class="mtext-107 cl2 p-r-20">
-                                                    Ariana Grande
-                                                </span>
+                                            <div class="size-207">
+                                                <div class="flex-w flex-sb-m p-b-17">
+                                                    <span class="mtext-107 cl2 p-r-20">
+                                                        <?= $re['customer'] ?>
+                                                    </span>
 
-                                                <span class="fs-18 cl11">
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star-half"></i>
-                                                </span>
+                                                    <span class="fs-18 cl11">
+                                                        <!-- tampilkan elemen <i class="zmdi zmdi-star"></i> sesuai jumlah $re['rating'] -->
+                                                        <?php for ($i = 0; $i < $re['rating']; $i++) : ?>
+                                                            <i class="zmdi zmdi-star"></i>
+                                                        <?php endfor; ?>
+                                                    </span>
+                                                </div>
+
+                                                <p class="stext-102 cl6">
+                                                    <?= $re['review'] ?>
+                                                </p>
                                             </div>
-
-                                            <p class="stext-102 cl6">
-                                                Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
-                                            </p>
-                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
 
                                     <!-- Add review -->
-                                    <form class="w-full">
-                                        <h5 class="mtext-108 cl2 p-b-7">
-                                            Add a review
-                                        </h5>
+                                    <!-- cek apakah sudah login -->
+                                    <?php if (session()->get('id')) : ?>
+                                        <form class="w-full" action="<?= base_url('shop/review') ?>" method="POST">
+                                            <!-- input hidden -->
+                                            <input name="id" value="<?= $produk['id_produk'] ?>" hidden>
+                                            <input name="id_produk" value="<?= $produk['name'] ?>" hidden>
+                                            <input name="customer" value="<?= session()->get('name') ?>" hidden>
+                                            <input name="harga" value="<?= $produk['harga'] ?>" hidden>
+                                            <h5 class="mtext-108 cl2 p-b-7">
+                                                Tambah Review
+                                            </h5>
 
-                                        <p class="stext-102 cl6">
-                                            Your email address will not be published. Required fields are marked *
-                                        </p>
+                                            <p class="stext-102 cl6">
+                                                Review yang anda tulis akan membantu kami untuk memberikan pelayanan yang lebih baik
+                                            </p>
 
-                                        <div class="flex-w flex-m p-t-50 p-b-23">
-                                            <span class="stext-102 cl3 m-r-16">
-                                                Your Rating
-                                            </span>
+                                            <div class="flex-w flex-m p-t-50 p-b-23">
+                                                <span class="stext-102 cl3 m-r-16">
+                                                    Rating Anda
+                                                </span>
 
-                                            <span class="wrap-rating fs-18 cl11 pointer">
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <input class="dis-none" type="number" name="rating">
-                                            </span>
-                                        </div>
-
-                                        <div class="row p-b-25">
-                                            <div class="col-12 p-b-5">
-                                                <label class="stext-102 cl3" for="review">Your review</label>
-                                                <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
+                                                <span class="wrap-rating fs-18 cl11 pointer">
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <input class="dis-none" type="number" name="rating">
+                                                </span>
                                             </div>
 
-                                            <div class="col-sm-6 p-b-5">
-                                                <label class="stext-102 cl3" for="name">Name</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
+                                            <div class="row p-b-25">
+                                                <div class="col-12 p-b-5">
+                                                    <label class="stext-102 cl3" for="review">Review Anda</label>
+                                                    <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
+                                                </div>
                                             </div>
 
-                                            <div class="col-sm-6 p-b-5">
-                                                <label class="stext-102 cl3" for="email">Email</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
-                                            </div>
-                                        </div>
-
-                                        <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                            Submit
-                                        </button>
-                                    </form>
+                                            <button type="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+                                                Submit
+                                            </button>
+                                        </form>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

@@ -54,10 +54,19 @@ class ReviewController extends BaseController
             $sumX2 += pow($item['harga_produk'], 2);
         }
 
-        // Menghitung koefisien regresi
-        $m = ($n * $sumXY - $sumX * $sumY) / ($n * $sumX2 - pow($sumX, 2));
-        $c = ($sumY * $sumX2 - $sumX * $sumXY) / ($n * $sumX2 - pow($sumX, 2));
+        // Menghitung denominator untuk m dan c
+        $denominator = ($n * $sumX2 - pow($sumX, 2));
 
+        // Cek apakah denominator bernilai nol
+        if ($denominator == 0) {
+            // Jika denominator nol, gunakan fallback
+            $m = 0;  // Slope dianggap nol
+            $c = $sumY / $n;  // Intercept dianggap sebagai rata-rata Y
+        } else {
+            // Jika denominator tidak nol, lakukan perhitungan normal
+            $m = ($n * $sumXY - $sumX * $sumY) / $denominator;
+            $c = ($sumY * $sumX2 - $sumX * $sumXY) / $denominator;
+        }
 
         // Rata-rata rating pelanggan
         $averageRating = $sumY / $n;
@@ -71,7 +80,11 @@ class ReviewController extends BaseController
         }
 
         // Menghitung koefisien determinasi (R^2)
-        $rSquared = 1 - ($ssResidual / $ssTotal);
+        if ($ssTotal == 0) {
+            $rSquared = 1;  // Set rSquared ke 1 karena tidak ada variabilitas
+        } else {
+            $rSquared = 1 - ($ssResidual / $ssTotal);
+        }
 
         // Menentukan hubungan harga dan rating
         $relationship = "";

@@ -123,6 +123,7 @@
                                 <td class="cart__price" valign="top" colspan="2">TOTAL</td>
                                 <td class="cart__price" valign="top">Rp.<?= $transaksi['total_bayar'] + $ongkir ?>,-</td>
                             </tr>
+                            <?php $totalTransaksi = $transaksi['total_bayar'] + $ongkir ?>
                             <tr>
                                 <td class="cart__price" valign="top" colspan="3">Pembayaran Daapat Dilakukan Transfer Bank BCA (763 0414 673) a.n Toko Baju</td>
                             </tr>
@@ -164,6 +165,7 @@
                 <strong> Upload Bukti Pembayaran</strong>
                 <input class="form-control my-2" type="file" id="bukti_pembayaran" name="bukti_pembayaran" required>
                 <input class="form-control my-2" type="text" id="no_transaksi" name="no_transaksi" value="<?= $transaksi['no_transaksi'] ?>" hidden>
+                <input class="form-control my-2" type="text" id="total_bayar" name="total_bayar" value="<?= $totalTransaksi ?>" hidden>
                 <img src="" id="output" alt="" width="100%" class="mb-3">
                 <button class="btn btn-dark text-light w-100 my-2">Kirim</button>
 

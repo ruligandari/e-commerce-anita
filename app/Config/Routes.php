@@ -37,6 +37,8 @@ $routes->group('dashboard', ['filter' => 'authAdmin'], function ($routes) {
     // pesanan
     $routes->get('pesanan', 'Admin\PesananController::index');
     $routes->get('pesanan/detail/(:any)', 'Admin\PesananController::detail/$1');
+    $routes->get('pesanan/validasi/(:any)', 'Admin\PesananController::validasi/$1');
+    $routes->post('pesanan/kirim_pesanan', 'Admin\PesananController::kirim_pesanan');
 });
 
 
@@ -45,8 +47,13 @@ $routes->get('shop', 'user\ShopController::index');
 $routes->get('shop/(:num)', 'user\ShopController::detail/$1');
 $routes->get('shop/edit/(:num)/(:num)', 'user\ShopController::edit/$1/$2');
 $routes->post('shop/process', 'user\ShopController::process');
+$routes->post('shop/review', 'user\ShopController::review');
 $routes->post('shop/update', 'user\ShopController::update');
 $routes->get('shop/keranjang', 'user\ShopController::confirm');
+$routes->get('shop/detail/(:any)', 'user\ShopController::detail_pesanan/$1');
+$routes->post('shop/detail/terima_pesanan', 'user\ShopController::pesanan_diterima');
 $routes->post('shop/checkout', 'user\ShopController::checkout');
 $routes->get('shop/checkout/(:any)', 'user\ShopController::pembayaran/$1');
 $routes->post('shop/upload_bukti', 'user\ShopController::upload_bukti');
+// get pesanan
+$routes->post('shop/get_pesanan', 'user\ShopController::get_pesanan');
