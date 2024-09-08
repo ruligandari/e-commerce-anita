@@ -9,7 +9,6 @@
     <link rel="icon" type="image/png" href="<?= base_url('user') ?>/images/icons/favicon.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('user') ?>/vendor1/bootstrap/css/bootstrap.min.css">
-
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('user') ?>/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -54,7 +53,7 @@
 
                     <!-- Logo desktop -->
                     <a href="#" class="logo">
-                        <img src="<?= base_url('user') ?>/images/icons/logo-01.png" alt="IMG-LOGO">
+                        <img src="<?= base_url('user') ?>/images/icons/beniing.png" alt="IMG-LOGO" width="150">
                     </a>
 
                     <!-- Menu desktop -->
@@ -91,6 +90,11 @@
 
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  d-flex item-center">
                                 <i class="zmdi zmdi-account"></i><span class="stext-102 px-2"><?= session()->get('name') ?></span>
+                            </div>
+                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  d-flex item-center">
+                                <button onclick="logout()">
+                                    <span class="stext-102 px-2">Logout</span>
+                                </button>
                             </div>
                         <?php else : ?>
                             <a href="<?= base_url('customer/login') ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ml-2" tabindex="-1">
@@ -247,7 +251,7 @@
     <footer class="bg3 p-t-75 p-b-32">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-lg-3 p-b-50">
+                <!-- <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">
                         Categories
                     </h4>
@@ -261,11 +265,11 @@
                             </li>
                         <?php endforeach ?>
                     </ul>
-                </div>
+                </div> -->
 
 
 
-                <div class="col-sm-6 col-lg-3 p-b-50">
+                <!-- <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">
                         GET IN TOUCH
                     </h4>
@@ -287,7 +291,7 @@
                             <i class="fa fa-pinterest-p"></i>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="p-t-40">
@@ -296,7 +300,7 @@
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                    </script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by beniing.co
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
                 </p>
@@ -376,6 +380,24 @@
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
         });
+    </script>
+    <!-- script logout popup sweet alert -->
+    <script>
+        function logout() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan keluar dari akun ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Keluar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= base_url('customer/logout') ?>";
+                }
+            })
+        }
     </script>
     <!--===============================================================================================-->
     <script src="<?= base_url('user') ?>/vendor1/animsition/js/animsition.min.js"></script>

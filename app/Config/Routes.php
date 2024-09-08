@@ -10,8 +10,10 @@ $routes->post('auth', 'Admin\AuthController::login');
 $routes->get('logout', 'Admin\AuthController::logout');
 
 $routes->get('customer/login', 'Admin\AuthController::customer_login');
-$routes->get('customer/resgister', 'Admin\AuthController::customer_register');
+$routes->get('customer/register', 'Admin\AuthController::customer_register');
 $routes->post('customer/auth', 'Admin\AuthController::customer_auth');
+$routes->post('customer/auth_register', 'Admin\AuthController::customer_auth_register');
+$routes->get('customer/logout', 'Admin\AuthController::customer_logout');
 
 $routes->group('dashboard', ['filter' => 'authAdmin'], function ($routes) {
     $routes->get('/', 'Admin\DashboardController::index');
@@ -39,6 +41,8 @@ $routes->group('dashboard', ['filter' => 'authAdmin'], function ($routes) {
     $routes->get('pesanan/detail/(:any)', 'Admin\PesananController::detail/$1');
     $routes->get('pesanan/validasi/(:any)', 'Admin\PesananController::validasi/$1');
     $routes->post('pesanan/kirim_pesanan', 'Admin\PesananController::kirim_pesanan');
+
+    $routes->get('user', 'Admin\UserController::index');
 });
 
 

@@ -19,7 +19,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="#" class="text-nowrap logo-img">
-                        <img src="<?= base_url('admin') ?>/assets/images/logos/dark-logo.svg" width="180" alt="" />
+                        <img src="<?= base_url('admin') ?>/assets/images/logos/logo.jpeg" width="130" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -73,11 +73,11 @@
                             <span class="hide-menu">Pelanggan</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= base_url('dashboard/user') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>
-                                <span class="hide-menu">User</span>
+                                <span class="hide-menu">Customer</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -133,7 +133,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <!-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                                             <i class="ti ti-user fs-6"></i>
                                             <p class="mb-0 fs-3">My Profile</p>
                                         </a>
@@ -144,7 +144,7 @@
                                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                                             <i class="ti ti-list-check fs-6"></i>
                                             <p class="mb-0 fs-3">My Task</p>
-                                        </a>
+                                        </a> -->
                                         <a href="<?= base_url('logout') ?>" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>

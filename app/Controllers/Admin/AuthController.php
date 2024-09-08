@@ -100,4 +100,45 @@ class AuthController extends BaseController
             return redirect()->to('/customer/login');
         }
     }
+
+    public function customer_register()
+    {
+        $data = [
+            'title' => 'Register Customer',
+        ];
+        return view('admin/auth/customer_register', $data);
+    }
+
+    public function customer_auth_register()
+    {
+        $nama_lengkap = $this->request->getPost('nama_lengkap');
+        $email = $this->request->getPost('email');
+        $no_hp = $this->request->getPost('no_hp');
+        $alamat = $this->request->getPost('alamat');
+        $password = $this->request->getPost('password');
+        $password_2 = $this->request->getPost('password_2');
+
+        if ($password != $password_2) {
+            session()->setFlashdata('error', 'Password tidak sama');
+            return redirect()->to('/customer/register');
+        }
+
+        $data = [
+            'name' => $nama_lengkap,
+            'email' => $email,
+            'phone' => $no_hp,
+            'address' => $alamat,
+            'password' => $password,
+        ];
+
+        $this->customer->insert($data);
+        session()->setFlashdata('success', 'Register berhasil, Silahkan Login');
+        return redirect()->to('/customer/login');
+    }
+
+    public function customer_logout()
+    {
+        session()->destroy();
+        return redirect()->to('/');
+    }
 }

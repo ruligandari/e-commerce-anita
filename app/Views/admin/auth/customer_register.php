@@ -25,30 +25,40 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 <?php endif ?>
-                                <?php if (session()->getFlashdata('success')) : ?>
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <?= session()->getFlashdata('success') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif ?>
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="<?= base_url('admin') ?>/assets/images/logos/dark-logo.svg" width="180" alt="">
                                 </a>
-                                <p class="text-center">Masukan Email & Password Untuk Login!</p>
-                                <form method="POST" action="<?= base_url('customer/auth') ?>">
+                                <p class="text-center">Masukan data untuk membuat akun</p>
+                                <form method="POST" action="<?= base_url('customer/auth_register') ?>">
                                     <?= csrf_field() ?>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+                                        <label for="exampleInputtext1" class="form-label">Nama Lengkap</label>
+                                        <input type="text" name="nama_lengkap" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Alamat Email</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Nomor Hp</label>
+                                        <input type="text" name="no_hp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Alamat Lengkap</label>
+                                        <textarea type="text" name="alamat" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
+                                    <div class="mb-4">
+                                        <label for="exampleInputPassword1" class="form-label">Konfirmasi Password</label>
+                                        <input type="password" name="password_2" class="form-control" id="exampleInputPassword1">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</button>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-bold">Belum Punya Akun?</p>
-                                        <a class="text-primary fw-bold ms-2" href="<?= base_url('customer/register') ?>">Buat Akun</a>
+                                        <p class="fs-4 mb-0 fw-bold">Sudah Punya Akun?</p>
+                                        <a class="text-primary fw-bold ms-2" href="<?= base_url('customer/login') ?>">Sign In</a>
                                     </div>
                                 </form>
                             </div>
