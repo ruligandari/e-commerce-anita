@@ -23,12 +23,10 @@ class ProdukController extends BaseController
     public function index()
     {
         // produk dengan pagination
-        $produk = $this->produk->paginate(10);
-        $pager = $this->produk->pager;
+        $produk = $this->produk->findAll();
         $data = [
             'title' => 'Produk',
             'produk' => $produk,
-            'pager' => $pager,
         ];
         return view('admin/produk/produk', $data);
     }
