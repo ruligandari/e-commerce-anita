@@ -42,6 +42,8 @@ $routes->group('dashboard', ['filter' => 'authAdmin'], function ($routes) {
     $routes->get('pesanan/validasi/(:any)', 'Admin\PesananController::validasi/$1');
     $routes->post('pesanan/kirim_pesanan', 'Admin\PesananController::kirim_pesanan');
 
+    $routes->get('laporan', 'Admin\LaporanController::index');
+
     $routes->get('user', 'Admin\UserController::index');
 });
 

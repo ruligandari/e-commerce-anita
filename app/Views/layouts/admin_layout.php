@@ -97,7 +97,7 @@
                             <span class="hide-menu">Pelaporan</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/laporan') ?>" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-report"></i>
                                 </span>
