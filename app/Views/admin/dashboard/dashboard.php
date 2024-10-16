@@ -26,13 +26,25 @@
     //    masukan ke data ini var dataPenjualan; var tanggalPenjualan;
     var dataPenjualan = [];
     var tanggalPenjualan = [];
-
     // mencari maksimal dari dataPenjualan
-    var maxData = Math.max(...dataPenjualan.map(Number));
+
     datas.forEach(function(data) {
         dataPenjualan.push(data.total_penjualan);
         tanggalPenjualan.push(data.tanggal);
     });
+    var maxData = Math.max(...dataPenjualan.map(Number));
+
+    // convert tanggalPenjualan ke format yang lebih mudah dibaca, misal 2021-08-01 menjadi 01 Agus 2021
+    tanggalPenjualan = tanggalPenjualan.map(function(tanggal) {
+        var date = new Date(tanggal);
+        var options = {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        };
+        return date.toLocaleDateString("id-ID", options);
+    });
+
     // console.log(dataPenjualan);
     // console.log(tanggalPenjualan);
     var chart = {
@@ -106,7 +118,7 @@
         yaxis: {
             show: true,
             min: 0,
-            max: maxData,
+            max: maxData + 10,
             tickAmount: 4,
             labels: {
                 style: {
