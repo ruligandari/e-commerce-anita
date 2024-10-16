@@ -44,7 +44,7 @@ class ShopController extends BaseController
 
         $namaProduk = $produk['name'];
 
-        $review = $this->review->where('id_produk', $namaProduk)->findAll(5);
+        $review = $this->review->where('id_produk', $namaProduk)->findAll();
 
         $size =  $this->sizeModel->where('id_produk', $id)->findAll();
         $data = [

@@ -125,6 +125,13 @@
 <?= $this->section('script'); ?>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
 <script>
-    let table = new DataTable('#myTable');
+    // dataTable dengan desc
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            "order": [
+                [0, "desc"]
+            ] // Urutkan kolom pertama (index 0) secara descending
+        });
+    });
 </script>
 <?= $this->endSection(); ?>

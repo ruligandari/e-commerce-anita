@@ -76,26 +76,53 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
-                                <label for="basic-url" class="form-label">Ukuran & Stok</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon3">S</span>
-                                    <input type="number" class="form-control" id="basic-url" name="S" aria-describedby="basic-addon3">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon3">M</span>
-                                    <input type="number" class="form-control" id="basic-url" name="M" aria-describedby="basic-addon3">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon3">L</span>
-                                    <input type="number" class="form-control" id="basic-url" name="L" aria-describedby="basic-addon3">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon3">XL</span>
-                                    <input type="number" class="form-control" id="basic-url" name="XL" aria-describedby="basic-addon3">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon3">XXL</span>
-                                    <input type="number" class="form-control" id="basic-url" name="XXL" aria-describedby="basic-addon3">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="basic-url" class="form-label">Ukuran & Stok</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">S</span>
+                                            <input type="number" class="form-control" id="basic-url" name="S" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">M</span>
+                                            <input type="number" class="form-control" id="basic-url" name="M" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">L</span>
+                                            <input type="number" class="form-control" id="basic-url" name="L" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">XL</span>
+                                            <input type="number" class="form-control" id="basic-url" name="XL" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">XXL</span>
+                                            <input type="number" class="form-control" id="basic-url" name="XXL" aria-describedby="basic-addon3">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="basic-url" class="form-label">Warna</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">Warna 1</span>
+                                            <input type="text" class="form-control" id="basic-url" name="warna1" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">Warna 2</span>
+                                            <input type="text" class="form-control" id="basic-url" name="warna2" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">Warna 3</span>
+                                            <input type="text" class="form-control" id="basic-url" name="warna3" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">Warna 4</span>
+                                            <input type="text" class="form-control" id="basic-url" name="warna4" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">Warna 5</span>
+                                            <input type="text" class="form-control" id="basic-url" name="warna5" aria-describedby="basic-addon3">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div id="ukuranLain"></div>

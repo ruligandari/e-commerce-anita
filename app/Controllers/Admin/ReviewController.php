@@ -89,15 +89,20 @@ class ReviewController extends BaseController
         // Menentukan hubungan harga dan rating
         $relationship = "";
         $suggestion = "";
+        $kesimpulan = "";
+
         if ($m > 0) {
             $relationship = "😁 Pelanggan Puas";
-            $suggestion = "Pertahankan ! dan tetap perhatikan kualitas produk dan pelayanan";
+            $suggestion = "Pertahankan kualitas produk dan pelayanan yang baik untuk menjaga kepuasan pelanggan. Terus dengarkan umpan balik dari pelanggan untuk perbaikan lebih lanjut.";
+            $kesimpulan = "Dengan slope yang positif, menunjukkan bahwa peningkatan harga diiringi dengan peningkatan rating, pelanggan merasa bahwa harga yang dibayarkan sebanding dengan kualitas yang diterima. Pastikan untuk terus meningkatkan pengalaman pelanggan agar kepuasan tetap terjaga.";
         } elseif ($m < 0) {
             $relationship = "😔 Pelanggan Tidak Puas";
-            $suggestion = "Harga produk bisa diturunkan, namun tetap perhatikan kualitas produk dan pelayanan";
+            $suggestion = "Untuk meningkatkan kepuasan, Anda mungkin bisa mempertimbangkan untuk menyesuaikan harga atau meningkatkan kualitas produk dan pelayanan agar sejalan dengan harga yang ditetapkan.";
+            $kesimpulan = "Dengan slope yang negatif, pelanggan cenderung tidak puas dengan kenaikan harga produk. Meskipun nilai slope sangat kecil, menunjukkan bahwa penurunan rating ini tidak terlalu tajam, tetap ada pengaruh signifikan dari harga terhadap kepuasan pelanggan. Oleh karena itu, penting untuk mengoptimalkan hubungan antara harga dan kualitas produk, serta mempertimbangkan strategi promosi untuk menarik pelanggan.";
         } else {
             $relationship = "😐 Pelanggan Biasa Saja";
-            $suggestion = "Harga produk bisa dipertahankan, namun tetap perhatikan kualitas produk dan pelayanan";
+            $suggestion = "Harga produk bisa dipertahankan, namun tetap perhatikan kualitas produk dan pelayanan. Upayakan untuk meningkatkan engagement dengan pelanggan untuk mengetahui keinginan dan harapan mereka lebih baik.";
+            $kesimpulan = "Dengan slope nol, menunjukkan bahwa perubahan harga tidak berpengaruh signifikan terhadap rating pelanggan. Hal ini bisa berarti pelanggan merasa netral terhadap harga yang ditawarkan. Disarankan untuk melakukan survei untuk memahami lebih dalam tentang persepsi pelanggan dan meningkatkan nilai tambah produk.";
         }
 
         $data = [
@@ -111,6 +116,7 @@ class ReviewController extends BaseController
             'relationship' => $relationship,
             'rSquared' => round($rSquared, 2),
             'suggestion' => $suggestion,
+            'kesimpulan' => $kesimpulan
         ];
 
         return view('admin/review/review', $data);

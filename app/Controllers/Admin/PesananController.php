@@ -20,7 +20,7 @@ class PesananController extends BaseController
     public function index()
     {
         $transaksi = $this->transaksi->join('customer', 'customer.id = transaksi.id_customer')
-            ->findAll();
+            ->orderBy('id_transaksi', 'DESC')->findAll();
 
         $data = [
             'title' => 'Pesanan',

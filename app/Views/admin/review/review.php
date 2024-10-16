@@ -85,8 +85,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="alert alert-success" role="alert">
+                                    <div class="alert alert-warning" role="alert">
                                         Saran: <?= $suggestion ?>
+                                    </div>
+                                    <div class="alert alert-success" role="alert">
+                                        Kesimpulan: <?= $kesimpulan ?>
                                     </div>
                                 </div>
                             </div>

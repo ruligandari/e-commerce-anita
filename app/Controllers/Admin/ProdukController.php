@@ -65,6 +65,13 @@ class ProdukController extends BaseController
         $XL = $this->request->getPost('XL');
         $XXL = $this->request->getPost('XXL');
 
+        // warna
+        $warna1 = $this->request->getPost('warna1');
+        $warna2 = $this->request->getPost('warna2');
+        $warna3 = $this->request->getPost('warna3');
+        $warna4 = $this->request->getPost('warna4');
+        $warna5 = $this->request->getPost('warna5');
+
         // upload foto_produk
         $foto_produk->move('uploads/produk', $foto_produk->getName());
 
@@ -84,27 +91,32 @@ class ProdukController extends BaseController
                 [
                     'id_produk' => $productID,
                     'size' => 'S',
-                    'stok' => $S
+                    'stok' => $S,
+                    'color' => $warna1
                 ],
                 [
                     'id_produk' => $productID,
                     'size' => 'M',
-                    'stok' => $M
+                    'stok' => $M,
+                    'color' => $warna2
                 ],
                 [
                     'id_produk' => $productID,
                     'size' => 'L',
-                    'stok' => $L
+                    'stok' => $L,
+                    'color' => $warna3
                 ],
                 [
                     'id_produk' => $productID,
                     'size' => 'XL',
-                    'stok' => $XL
+                    'stok' => $XL,
+                    'color' => $warna4
                 ],
                 [
                     'id_produk' => $productID,
                     'size' => 'XXL',
-                    'stok' => $XXL
+                    'stok' => $XXL,
+                    'color' => $warna5
                 ],
             ];
 
@@ -130,6 +142,9 @@ class ProdukController extends BaseController
         $foto_produk = $this->request->getFile('foto_produk');
         $gambarLama = $this->request->getPost('gambarLama');
         $size = $this->request->getPost('size');
+        $warna = $this->request->getPost('warna');
+
+        // dd($warna);
 
         // cek apakah ada foto yang diupload
         if ($foto_produk->getError()) {
@@ -154,16 +169,22 @@ class ProdukController extends BaseController
             $dataSize = [];
             foreach ($size as $key => $value) {
                 // definisikan key 0 = S, 1 = M, 2 = L, 3 = XL, 4 = XXL
-                $key = $key == 0 ? 'S' : ($key == 1 ? 'M' : ($key == 2 ? 'L' : ($key == 3 ? 'XL' : 'XXL')));
+                $keys = $key == 0 ? 'S' : ($key == 1 ? 'M' : ($key == 2 ? 'L' : ($key == 3 ? 'XL' : 'XXL')));
+                $warnas = [];
+                foreach ($warna as $values) {
+                    $warnas[] = $values;
+                }
                 $dataSize[] = [
                     'id_produk' => $id_produk,
-                    'size' => $key,
-                    'stok' => $value
+                    'size' => $keys,
+                    'stok' => $value,
+                    'color' => $warnas[$key]
                 ];
             }
             $this->produkSize->insertBatch(
                 $dataSize
             );
+
 
             return redirect()->to(base_url('dashboard/produk'))->with('success', 'Berhasil mengubah produk');
         } catch (\Exception $e) {

@@ -84,9 +84,19 @@
                             <div class="mb-3">
                                 <label for="basic-url" class="form-label">Ukuran & Stok</label>
                                 <?php foreach ($produkSize as $item) : ?>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon3"><?= $item['size'] ?></span>
-                                        <input type="number" class="form-control" id="basic-url" name="size[]" value="<?= $item['stok'] ?>" aria-describedby="basic-addon3">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon3"><?= $item['size'] ?></span>
+                                                <input type="number" class="form-control" id="basic-url" name="size[]" value="<?= $item['stok'] ?>" aria-describedby="basic-addon3">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon3">Warna</span>
+                                                <input type="text" class="form-control" id="basic-url" name="warna[]" value="<?= $item['color'] ?>" aria-describedby="basic-addon3">
+                                            </div>
+                                        </div>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
