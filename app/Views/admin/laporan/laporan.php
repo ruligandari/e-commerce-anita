@@ -161,6 +161,16 @@
         maxDate = new DateTime('#max', {
             format: 'YYYY-MM-DD'
         });
+
+        function formatDate(dateStr) {
+            if (!dateStr) return null; // Jika null atau undefined, kembalikan null
+            let date = new Date(dateStr);
+            let day = String(date.getDate()).padStart(2, '0');
+            let month = String(date.getMonth() + 1).padStart(2, '0'); // Bulan di JS dimulai dari 0
+            let year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
         DataTable.ext.search.push(function(settings, data, dataIndex) {
             let min = minDate.val();
             let max = maxDate.val();
@@ -182,13 +192,47 @@
             buttons: [{
                     extend: 'excelHtml5',
                     footer: true,
-                    title: "List Transaksi -  <?= date('d-m-Y') ?>"
+                    title: function() {
+                        let min = formatDate(minDate.val()) || 'awal';
+                        let max = formatDate(maxDate.val()) || 'akhir';
+                        return "List Transaksi : " + min + " - " + max;
+                    },
 
                 },
                 {
                     extend: 'pdfHtml5',
                     footer: true,
-                    title: "List Transaksi -  <?= date('d-m-Y') ?>"
+                    title: function() {
+                        let min = formatDate(minDate.val()) || 'awal';
+                        let max = formatDate(maxDate.val()) || 'akhir';
+                        return "List Transaksi : " + min + " - " + max;
+                    },
+                    customize: function(doc) {
+                        // Menambahkan logo dan nama toko di bagian atas file PDF
+                        doc.content.splice(0, 0, {
+                            alignment: 'center',
+                            image: 'data:image/png;base64,<?= base64_encode(file_get_contents('user/images/icons/beniing.png')) ?>', // Gantikan dengan path logo
+                            width: 130, // Ubah ukuran sesuai kebutuhan
+                            margin: [0, 0, 0, 10]
+                        });
+                        doc.content.splice(1, 0, {
+                            text: 'Toko Beniing.co',
+                            alignment: 'center',
+                            fontSize: 14,
+                            bold: true,
+                            margin: [0, 0, 0, 10]
+                        });
+                        doc.content.splice(2, 0, {
+                            text: 'Jl Raya Kasab Mandirancan Kuningan, Indonesia',
+                            alignment: 'center',
+                            fontSize: 12,
+                            bold: true,
+                            margin: [0, 0, 0, 10]
+                        });
+                        doc.content[3].alignment = 'left'; // Rata kiri
+                        doc.content[3].fontSize = 10; // Ukuran font 10
+                        doc.content[3].margin = [0, 10, 0, 10]; // Margin untuk title
+                    }
 
                 }
             ],
