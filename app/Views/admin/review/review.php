@@ -48,6 +48,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title fw-semibold p-2">Analisis Metode Least Square</h5>
+                                <div class="col-12 mb-4">
+                                    <label for="selectProduk" class="form-label">Pilih Jumlah Data:</label>
+                                    <select class="form-select" id="selectTotalData">
+                                        <option value="">Semua</option>
+                                        <option value="10" <?= $paginate == 10 ? 'selected' : '' ?>>10</option>
+                                        <option value="20" <?= $paginate == 20 ? 'selected' : '' ?>>20</option>
+                                        <option value="50" <?= $paginate == 50 ? 'selected' : '' ?>>50</option>
+                                    </select>
+                                </div>
                                 <div class="row d-flex ">
                                     <div class="col-3">
                                         <div class="card">
@@ -180,6 +189,17 @@
             window.location.href = '<?= base_url('dashboard/review') ?>' + '/' + id;
         } else {
             window.location.href = '<?= base_url('dashboard/review') ?>';
+        }
+    });
+
+    // select total data
+    $('#selectTotalData').change(function() {
+        let id = $(this).val();
+        let selectedProduk = $('#selectProduk').val();
+        if (id != '') {
+            window.location.href = '<?= base_url('dashboard/review') ?>' + '/' + selectedProduk + '&' + id;
+        } else {
+            window.location.href = '<?= base_url('dashboard/review') ?>' + '/' + selectedProduk;
         }
     });
 </script>

@@ -39,7 +39,15 @@ class ReviewController extends BaseController
 
     public function detail($id)
     {
-        $produk = $this->reviewModel->where('id_produk', $id)->findAll();
+        // pisahkan contoh Rok Wanita Rempel&10 menjadi Rok Wanita Rempel dan 10
+        $idProduk = explode('&', $id)[0];
+        $paginate = explode('&', $id)[1] ?? null;
+
+        if ($paginate) {
+            $produk = $this->reviewModel->where('id_produk', $idProduk)->findAll($paginate);
+        } else {
+            $produk = $this->reviewModel->where('id_produk', $idProduk)->findAll();
+        }
 
         // Menghitung jumlah data
         $n = count($produk);
@@ -109,7 +117,8 @@ class ReviewController extends BaseController
             'title' => 'Review',
             'produk' => $produk,
             'uniqueProduk' => $this->uniqueProduk,
-            'id_produk' => $id,
+            'id_produk' => $idProduk,
+            'paginate' => $paginate,
             'koefisien' => number_format($m, 10, '.', ','),
             'intersep' => round($c, 2),
             'averageRating' => round($averageRating, 2),
