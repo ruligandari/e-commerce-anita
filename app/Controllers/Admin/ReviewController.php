@@ -44,7 +44,7 @@ class ReviewController extends BaseController
         $paginate = explode('&', $id)[1] ?? null;
 
         if ($paginate) {
-            $produk = $this->reviewModel->where('id_produk', $idProduk)->findAll($paginate);
+            $produk = $this->reviewModel->where('id_produk', $idProduk)->orderBy('id')->paginate($paginate);
         } else {
             $produk = $this->reviewModel->where('id_produk', $idProduk)->findAll();
         }

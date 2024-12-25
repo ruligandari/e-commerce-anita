@@ -12,7 +12,9 @@
                             <h5 class="card-title fw-semibold">Riwayat Pesanan</h5>
                         </div>
                     </div>
-                    <div id="chart"></div>
+                    <a href="<?= base_url('dashboard/pesanan') ?>">
+                        <div id="chart"></div>
+                    </a>
                 </div>
             </div>
         </div>
