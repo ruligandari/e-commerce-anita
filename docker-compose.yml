@@ -1,0 +1,36 @@
+services:
+  beniing:
+    build: .
+    container_name: beniing
+    ports:
+      - "8081:80"  # Port lokal untuk debugging
+    volumes:
+      - ./public:/app/public
+      - ./app:/app/app
+      - ./vendor:/app/vendor
+      - ./writable:/app/writable
+      - ./.env:/app/.env
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    environment:
+      CI_ENVIRONMENT: production
+      DB_HOST: mysql  # Host MySQL
+      DB_USER: root
+      DB_PASSWORD: rootpassword
+      DB_DATABASE: beniing
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.beniing.rule=Host(`beniing.hellodev.my.id`)"
+      - "traefik.http.routers.beniing.entrypoints=websecure"
+      - "traefik.http.routers.beniing.tls.certresolver=myresolver" # Gunakan resolver yang telah diatur
+      - "traefik.http.services.beniing.loadbalancer.server.port=80"
+    restart: always
+
+volumes:
+  db_data:
+
+networks:
+  traefik:
+    external:
+     name: traefik
