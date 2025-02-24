@@ -285,7 +285,7 @@
 
                                             <div class="flex-w flex-m p-t-50 p-b-23">
                                                 <span class="stext-102 cl3 m-r-16">
-                                                    Rating Anda
+                                                    Rating Produk
                                                 </span>
 
                                                 <span class="wrap-rating fs-18 cl11 pointer">
@@ -295,6 +295,20 @@
                                                     <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                     <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                     <input class="dis-none" type="number" name="rating">
+                                                </span>
+                                            </div>
+                                            <div class="flex-w flex-m p-b-23">
+                                                <span class="stext-102 cl3 m-r-16">
+                                                    Rating Pelayanan
+                                                </span>
+
+                                                <span class="wrap-rating fs-18 cl11 pointer">
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                    <input class="dis-none" type="number" name="rating_pelayanan">
                                                 </span>
                                             </div>
 

@@ -353,11 +353,13 @@ class ShopController extends BaseController
         $rating = $this->request->getPost('rating');
         $review = $this->request->getPost('review');
         $id_produk = $this->request->getPost('id_produk');
+        $rating_pelayanan = $this->request->getPost('rating_pelayanan');
         $customer = $this->request->getPost('customer');
         $harga = $this->request->getPost('harga');
 
         $data = [
             'rating' => $rating,
+            'rating_pelayanan' => $rating_pelayanan,
             'review' => $review,
             'id_produk' => $id_produk,
             'customer' => $customer,
